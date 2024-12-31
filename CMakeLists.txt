@@ -35,7 +35,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Robot-Arm Robot-Arm.cpp )
+add_executable(Robot-Arm src/main.cpp )
 
 pico_set_program_name(Robot-Arm "Robot-Arm")
 pico_set_program_version(Robot-Arm "0.1")
