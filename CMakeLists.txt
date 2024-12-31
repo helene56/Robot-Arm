@@ -52,6 +52,12 @@ target_link_libraries(Robot-Arm
 # Add the standard include files to the build
 target_include_directories(Robot-Arm PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
+  ${CMAKE_CURRENT_LIST_DIR}/include
+)
+
+# Add your .cpp files to the list of source files
+target_sources(PixelMaster PRIVATE
+  ${CMAKE_CURRENT_LIST_DIR}/src/servo_utils.cpp
 )
 
 pico_add_extra_outputs(Robot-Arm)
