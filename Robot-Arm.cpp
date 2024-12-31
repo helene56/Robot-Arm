@@ -2,6 +2,8 @@
 #include "pico/stdlib.h"
 #include "hardware/pwm.h"
 
+void turn_servo(uint pin, double wrap);
+void stop_servo(uint pin, double wrap);
 
 int main()
 {
@@ -22,9 +24,42 @@ int main()
     pwm_config_set_wrap(&config, 39061);
     // initialize pwm
     pwm_init(slice, &config, true);
-    
-    while (true) {
+
+    turn_servo(pwm_pin, 39061);
+    // full round 360
+    // sleep_ms(1110);
+    // 90 deg
+    // sleep_ms(585);
+    sleep_ms(280);
+    pwm_set_gpio_level(pwm_pin, 0);
+    while (true) 
+    {
         printf("Hello, world!\n");
         sleep_ms(1000);
+        
     }
+}
+
+void turn_servo(uint pin, double wrap)
+{
+    // set pulse width for controlling the servo
+    // duty cycle = pulse width / period * wrap value
+    // 1.0 ms / 20 ms * wrap for clockwise direction
+    // 2.0 ms for anti-clockwise
+    double duty_cycle {(0.001 / 0.020) * wrap};
+    pwm_set_gpio_level(pin, duty_cycle);
+
+
+}
+
+void stop_servo(uint pin, double wrap)
+{
+    // set pulse width for controlling the servo
+    // duty cycle = pulse width / period * wrap value
+    // 1.0 ms / 20 ms * wrap for clockwise direction
+    // 2.0 ms for anti-clockwise
+    double duty_cycle {(0.0015 / 0.020) * wrap};
+    pwm_set_gpio_level(pin, duty_cycle);
+
+
 }
