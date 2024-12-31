@@ -56,7 +56,7 @@ target_include_directories(Robot-Arm PRIVATE
 )
 
 # Add your .cpp files to the list of source files
-target_sources(PixelMaster PRIVATE
+target_sources(Robot-Arm PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}/src/servo_utils.cpp
 )
 
