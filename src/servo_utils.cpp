@@ -55,20 +55,22 @@ static inline void stop_servo()
     pwm_set_gpio_level(motor::control_pwm_pin, 0);
 }
 
-void move_servo_duration(uint32_t time_interval, bool servo_on)
+void move_servo_duration(uint32_t time_interval, volatile bool button_press)
 {
-    // static bool first_time {true};
+    static bool turn_check {true};
     uint32_t current_time = to_ms_since_boot(get_absolute_time());
     static uint32_t last_time {0};
-    if (servo_on)
+    if (turn_check && button_press)
     {
         turn_servo();
+        last_time = current_time; // update time
+        turn_check = false;
     }
     
-    if ((current_time - last_time >= time_interval))
+    if ((current_time - last_time >= time_interval) && (!turn_check))
     {
         stop_servo();
-        last_time = current_time;
+        turn_check = true;
     }
     
 }

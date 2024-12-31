@@ -17,9 +17,10 @@ int main()
     
     while (true) 
     {
-        bool button_pressed {gpio_get(button_pin) == 0}; // Active low
-        move_servo_duration(1000, button_pressed);
-        // sleep_ms(3000);
+        sleep_ms(2);
+        volatile bool button_pressed {gpio_get(button_pin) == 0}; // Active low
+        move_servo_duration(1000 + 30, button_pressed);
+        
         
     }
 }
