@@ -9,3 +9,7 @@ connections
 servo gnd -> gnd
 servo V -> Vsource
 servo control pin -> RP2040 gpio 16
+gpio 26 -> resistor -> gnd
+photosensor -> gpio 26
+photosensor -> Vsource
+
