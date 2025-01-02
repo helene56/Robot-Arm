@@ -14,7 +14,8 @@ int main()
     gpio_init(button_pin);
     gpio_set_dir(button_pin, GPIO_IN);
     gpio_pull_up(button_pin);
-
+    // adc result
+    uint16_t result {0};
     // add photoresistor
     constexpr uint photoResistor_pin {26};
     adc_init(); //initiliaze adc module
@@ -25,11 +26,12 @@ int main()
     
     while (true) 
     {
-        printf("photoresistor value%u\n", adc_read());
         sleep_ms(2);
+        uint16_t result {adc_read()};
+        printf("photoresistor value %u\n", result);
         volatile bool button_pressed {gpio_get(button_pin) == 0}; // Active low
-        move_servo_duration(1000 + 30, button_pressed);
-        
+        // move_servo_duration(1000 + 30, button_pressed);
+        move_servo_in_light(result, button_pressed);
         
     }
 }
