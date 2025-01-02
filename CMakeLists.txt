@@ -47,7 +47,8 @@ pico_enable_stdio_usb(Robot-Arm 1)
 # Add the standard library to the build
 target_link_libraries(Robot-Arm
         pico_stdlib
-        hardware_pwm)
+        hardware_pwm
+        hardware_adc)
 
 # Add the standard include files to the build
 target_include_directories(Robot-Arm PRIVATE
