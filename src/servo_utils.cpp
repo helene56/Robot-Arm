@@ -74,3 +74,24 @@ void move_servo_duration(uint32_t time_interval, volatile bool button_press)
     }
     
 }
+
+void move_servo_in_light(uint16_t adc_result, volatile bool button_press)
+{
+    static bool first {false};
+
+    if (button_press)
+    {
+        first = true;
+    }
+    if (first)
+    {
+        turn_servo();
+        first = false;
+    }
+    if (adc_result > 3000)
+    {
+        stop_servo();
+    }
+
+    
+}
