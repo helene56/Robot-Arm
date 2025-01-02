@@ -16,7 +16,7 @@ int main()
     gpio_pull_up(button_pin);
 
     // add photoresistor
-    constexpr uint photoResistor_pin {17};
+    constexpr uint photoResistor_pin {26};
     adc_init(); //initiliaze adc module
     adc_gpio_init(photoResistor_pin);
     adc_select_input(0); // selects ADC0 as the input
